@@ -1,0 +1,20 @@
+<!-- Page config -->
+{% extends "layouts/default.nunjucks" %}
+{% set pageTitle = "Front-end web development AMP boilerplate starter" %}
+{% set canonical = "http://example.ampproject.org/article-metadata.html" %}
+{% set activeMenu = "home" %}
+
+
+
+<!-- <style amp-custom> -->
+{% block amp_custom %}
+
+{% endblock %}
+
+<!-- Page content -->
+{% block content %}
+  <div class="container">
+  	<h1>Building the future web, together.</h1>
+    <p>The AMP Project is an open-source initiative aiming to make the web better for all. The project enables the creation of websites and ads that are consistently fast, beautiful and high-performing across devices and distribution platforms.</p>
+  </div>
+{% endblock %}
