@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-  watch = require('gulp-watch'),
   plumber = require('gulp-plumber'),
   sass = require('gulp-sass'),
   postcss = require('gulp-postcss'),
@@ -72,7 +71,6 @@ gulp.task('html', ['styles'], function () {
 gulp.task('watch-data', function () {
   return gulp.src('src/html/json/**/*.json', { base: 'src/html/json' })
     .pipe(plumber())
-    //.pipe(watch('src/html/json', { base: 'src/html/json' }))
     .pipe(gulp.dest('dist/json'));
 });
 
@@ -80,7 +78,6 @@ gulp.task('watch-data', function () {
 gulp.task('watch-images', function () {
   return gulp.src('src/html/img/**/*.+(jpg|png|gif|svg)', { base: 'src/html/img' })
     .pipe(plumber())
-    //.pipe(watch('src/html/img', { base: 'src/html/img' }))
     .pipe(gulp.dest('dist/img'));
 });
 
