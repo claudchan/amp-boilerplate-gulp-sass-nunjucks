@@ -1,13 +1,28 @@
-<!-- Page config -->
-{% extends "layouts/default.nunjucks" %}
-{% set pageTitle = "Front-end web development AMP boilerplate starter" %}
-{% set canonical = "http://example.ampproject.org/article-metadata.html" %}
-{% set activeMenu = "home" %}
-
-
-
-<!-- <style amp-custom> -->
-{% block amp_custom %}
+<!doctype html>
+<html ⚡ lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>Front-end web development AMP boilerplate starter | Hello, AMPs</title>
+    <link rel="shortcut icon" href="/img/amp_favicon.png">
+    <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Open-source framework for publishing content",
+        "datePublished": "2015-10-07T12:02:41Z",
+        "image": [
+          "logo.jpg"
+        ]
+      }
+    </script>
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <style amp-custom>
   .list-overflow {
     width: 160px;
     margin-left: auto;
@@ -81,10 +96,10 @@
       166px 53px;
     }
   }
-{% endblock %}
-
-<!-- Page content -->
-{% block content %}
+</style>
+  </head>
+  <body>
+    
   <div class="container">
 
     <h1>Building the future web, together.</h1>
@@ -95,21 +110,21 @@
     <div>Please select a product:</div>
     <amp-state id="products"
     src="/json/data.json"></amp-state>
-    <amp-img on="tap:AMP.setState({% raw %}{ productId: 0}{% endraw %})"
+    <amp-img on="tap:AMP.setState({ productId: 0})"
       src="/img/red_apple_1_60x40.jpg"
       width="60"
       height="40"
       role="button"
       tabindex="0">
     </amp-img>
-    <amp-img on="tap:AMP.setState({% raw %}{ productId: 1}{% endraw %})"
+    <amp-img on="tap:AMP.setState({ productId: 1})"
       src="/img/green_apple_1_60x40.jpg"
       width="60"
       height="40"
       role="button"
       tabindex="0">
     </amp-img>
-    <amp-img on="tap:AMP.setState({% raw %}{ productId: 2}{% endraw %})"
+    <amp-img on="tap:AMP.setState({ productId: 2})"
       src="/img/product1_alt1_60x40.jpg"
       width="60"
       height="40"
@@ -126,7 +141,7 @@
       src="/json/amp-list-urls.json">
       <template type="amp-mustache" id="amp-template-id">
         <div class="url-entry">
-          Test URL: <a href="{% raw %}{{url}}{% endraw %}">Title: {% raw %} {{title}} {% endraw %}</a>
+          Test URL: <a href="{{url}}">Title:  {{title}} </a>
         </div>
       </template>
     </amp-list>
@@ -142,7 +157,7 @@
       src="/json/products.json"
       class="m1">
       <template type="amp-mustache">
-        Price: ${% raw %}{{price}}{% endraw %}
+        Price: ${{price}}
       </template>
     </amp-list>
     <p> An awesome product </p>
@@ -151,7 +166,7 @@
       src="/json/products.json"
       class="m1">
       <template type="amp-mustache">
-      Availability: {% raw %}{{availability}}{% endraw %}
+      Availability: {{availability}}
       </template>
     </amp-list>
 
@@ -169,11 +184,11 @@
         <div class="products">
         <amp-img width="150"
           height="100"
-          alt="{% raw %}{{name}}{% endraw %}"
-          src="{% raw %}{{img}}{% endraw %}"></amp-img>
-          <p class="name">{% raw %}{{name}}{% endraw %}</p>
-          <p class="star">{% raw %}{{{stars}}}{% endraw %}</p>
-          <p class="price">${% raw %}{{price}}{% endraw %}</p>
+          alt="{{name}}"
+          src="{{img}}"></amp-img>
+          <p class="name">{{name}}</p>
+          <p class="star">{{{stars}}}</p>
+          <p class="price">${{price}}</p>
         </div>
       </template>
     </amp-list>
@@ -181,4 +196,6 @@
     <hr>
 
   </div>
-{% endblock %}
+
+  </body>
+</html>

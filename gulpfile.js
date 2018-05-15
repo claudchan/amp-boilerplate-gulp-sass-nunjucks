@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+  watch = require('gulp-watch'),
   plumber = require('gulp-plumber'),
   sass = require('gulp-sass'),
   postcss = require('gulp-postcss'),
@@ -13,19 +14,26 @@ var gulp = require('gulp'),
   nunjucksRender = require('gulp-nunjucks-render'),
   gulpSequence = require('gulp-sequence');
 
-// BrowserSync tasks
-gulp.task('browserSync', function () {
-  browserSync.init({
-    port: 4500,
-    open: true,
-    ghostMode: false,
-    server: {
-      baseDir: 'dist'
-    }
-  });
+// Nunjucks tasks
+// task to render html
+gulp.task('nunjucks:render', function () {
+  return gulp.src('src/templates/pages/**/*.+(html|nunjucks)')
+    // Renders template with nunjucks
+    .pipe(
+      nunjucksRender({
+        path: ['src/templates']
+      })
+    )
+    // Output files in app folder
+    .pipe(gulp.dest('src/html'));
+});
+// task to run sequence
+gulp.task('nunjucks', function (callback) {
+  gulpSequence('nunjucks:render', 'html')(callback)
 });
 
 // Styles tasks
+// task to render css
 gulp.task('styles', function () {
   return gulp.src('src/sass/app.scss')
     .pipe(plumber())
@@ -60,31 +68,44 @@ gulp.task('html', ['styles'], function () {
     .pipe(gulp.dest('dist'));
 });
 
-// Nunjucks tasks
-// task to render html
-gulp.task('nunjucks:render', function () {
-  return gulp.src('src/templates/pages/**/*.+(html|nunjucks)')
-    // Renders template with nunjucks
-    .pipe(
-      nunjucksRender({
-        path: ['src/templates']
-      })
-    )
-    // Output files in app folder
-    .pipe(gulp.dest('src/html'));
+// Data folder tasks
+gulp.task('watch-data', function () {
+  return gulp.src('src/html/json/**/*.json', { base: 'src/html/json' })
+    .pipe(plumber())
+    //.pipe(watch('src/html/json', { base: 'src/html/json' }))
+    .pipe(gulp.dest('dist/json'));
 });
-gulp.task('nunjucks', function (callback) {
-  gulpSequence('nunjucks:render', 'html')(callback)
+
+// Image folder tasks
+gulp.task('watch-images', function () {
+  return gulp.src('src/html/img/**/*.+(jpg|png|gif|svg)', { base: 'src/html/img' })
+    .pipe(plumber())
+    //.pipe(watch('src/html/img', { base: 'src/html/img' }))
+    .pipe(gulp.dest('dist/img'));
+});
+
+// BrowserSync tasks
+gulp.task('browserSync', function () {
+  browserSync.init({
+    port: 4500,
+    open: true,
+    ghostMode: false,
+    server: {
+      baseDir: 'dist'
+    }
+  });
 });
 
 // Run
-gulp.task('run', gulpSequence('nunjucks:render', 'styles', 'html', 'watch', 'browserSync'));
+gulp.task('run', gulpSequence('nunjucks:render', 'styles', 'html', 'watch-data', 'watch-images', 'watch', 'browserSync'));
 
 // Watch tasks
 gulp.task('watch', function () {
   gulp.watch('src/templates/**/*.+(html|nunjucks)', ['waitForNunjucks']);
   gulp.watch('src/sass/**/*.scss', ['waitForStyles']);
   gulp.watch('dist/**/*.html', ['waitForHTML']);
+  gulp.watch('src/html/json/**/*.json', ['waitForData']);
+  gulp.watch('src/html/img/**/*.+(jpg|png|gif|svg)', ['waitForImages']);
 });
 
 gulp.task('waitForNunjucks', ['nunjucks'], function () {
@@ -96,6 +117,14 @@ gulp.task('waitForStyles', ['html'], function () {
 });
 
 gulp.task('waitForHTML', function () {
+  browserSync.reload();
+});
+
+gulp.task('waitForData', ['watch-data'], function () {
+  browserSync.reload();
+});
+
+gulp.task('waitForImages', ['watch-images'], function () {
   browserSync.reload();
 });
 
