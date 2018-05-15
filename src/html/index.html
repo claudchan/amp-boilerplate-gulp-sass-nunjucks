@@ -43,6 +43,9 @@
     float: left;
     margin-right: 16px;
   }
+  .hide {
+    display: none;
+  }
   #amp-list-placeholder ul.results {
     list-style: none;
     overflow: auto;
@@ -172,6 +175,14 @@
 
     <hr>
 
+    <button
+      aria-expanded="false"
+      on="tap:AMP.setState({ buttonToggle: { expanded: !buttonToggle.expanded } })"
+      [aria-expanded]="buttonToggle.expanded ? 'true' : 'false'">Toggle</button>
+    <span class="hide" [class]="buttonToggle.expanded ? '' : 'hide'">Hello Wordl!</span>
+
+    <hr>
+
     <amp-list id="amp-list-placeholder" noloading width="auto"
       height="600"
       layout="fixed-height" src="/json/products.json">
@@ -192,8 +203,6 @@
         </div>
       </template>
     </amp-list>
-
-    <hr>
 
   </div>
 
