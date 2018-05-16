@@ -174,99 +174,116 @@
 
     <hr>
 
-    <div>Please select a product:</div>
-    <amp-state id="products"
-    src="/json/data.json"></amp-state>
-    <amp-img on="tap:AMP.setState({% raw %}{ productId: 0}{% endraw %})"
-      src="/img/red_apple_1_60x40.jpg"
-      width="60"
-      height="40"
-      role="button"
-      tabindex="0">
-    </amp-img>
-    <amp-img on="tap:AMP.setState({% raw %}{ productId: 1}{% endraw %})"
-      src="/img/green_apple_1_60x40.jpg"
-      width="60"
-      height="40"
-      role="button"
-      tabindex="0">
-    </amp-img>
-    <amp-img on="tap:AMP.setState({% raw %}{ productId: 2}{% endraw %})"
-      src="/img/product1_alt1_60x40.jpg"
-      width="60"
-      height="40"
-      role="button"
-      tabindex="0">
-    </amp-img>
-    <div [text]="products[productId] + ' available'"></div>
+    <div class="row">
+      <div class="col-sm-6">
 
-    <hr>
+        <div>Please select a product:</div>
+        <amp-state id="products"
+        src="/json/data.json"></amp-state>
+        <amp-img on="tap:AMP.setState({% raw %}{ productId: 0}{% endraw %})"
+          src="/img/red_apple_1_60x40.jpg"
+          width="60"
+          height="40"
+          role="button"
+          tabindex="0">
+        </amp-img>
+        <amp-img on="tap:AMP.setState({% raw %}{ productId: 1}{% endraw %})"
+          src="/img/green_apple_1_60x40.jpg"
+          width="60"
+          height="40"
+          role="button"
+          tabindex="0">
+        </amp-img>
+        <amp-img on="tap:AMP.setState({% raw %}{ productId: 2}{% endraw %})"
+          src="/img/product1_alt1_60x40.jpg"
+          width="60"
+          height="40"
+          role="button"
+          tabindex="0">
+        </amp-img>
+        <div [text]="products[productId] + ' available'"></div>
 
-    <amp-list width="auto"
-      height="100"
-      layout="fixed-height"
-      src="/json/amp-list-urls.json">
-      <template type="amp-mustache" id="amp-template-id">
-        <div class="url-entry">
-          Test URL: <a href="{% raw %}{{url}}{% endraw %}">Title: {% raw %} {{title}} {% endraw %}</a>
-        </div>
-      </template>
-    </amp-list>
+        <hr class="visible-xs">
 
-    <amp-list width="auto" height="100" layout="fixed-height" src="/json/amp-list-urls.json"
-        template="amp-template-id" class="m1">
-    </amp-list>
-
-    <hr>
-
-    <amp-list height="24"
-      layout="fixed-height"
-      src="/json/products.json"
-      class="m1">
-      <template type="amp-mustache">
-        Price: ${% raw %}{{price}}{% endraw %}
-      </template>
-    </amp-list>
-    <p> An awesome product </p>
-    <amp-list height="24"
-      layout="fixed-height"
-      src="/json/products.json"
-      class="m1">
-      <template type="amp-mustache">
-      Availability: {% raw %}{{availability}}{% endraw %}
-      </template>
-    </amp-list>
-
-    <hr>
-
-    <button
-      aria-expanded="false"
-      on="tap:AMP.setState({% raw %}{ buttonToggle: { expanded: !buttonToggle.expanded } }{% endraw %})"
-      [aria-expanded]="buttonToggle.expanded ? 'true' : 'false'">Toggle</button>
-    <span class="hide" [class]="buttonToggle.expanded ? '' : 'hide'">Hello Wordl!</span>
-
-    <hr>
-
-    <amp-list id="amp-list-placeholder" noloading width="auto"
-      height="600"
-      layout="fixed-height" src="/json/products.json">
-      <div placeholder>
-        <ul class="results">
-          <li></li><li></li><li></li><li></li><li></li>
-        </ul>
       </div>
-      <template type="amp-mustache">
-        <div class="products">
-        <amp-img width="150"
-          height="100"
-          alt="{% raw %}{{name}}{% endraw %}"
-          src="{% raw %}{{img}}{% endraw %}"></amp-img>
-          <p class="name">{% raw %}{{name}}{% endraw %}</p>
-          <p class="star">{% raw %}{{{stars}}}{% endraw %}</p>
-          <p class="price">${% raw %}{{price}}{% endraw %}</p>
-        </div>
-      </template>
-    </amp-list>
+      <div class="col-sm-6">
 
+        <amp-list width="auto"
+          height="100"
+          layout="fixed-height"
+          src="/json/amp-list-urls.json">
+          <template type="amp-mustache" id="amp-template-id">
+            <div class="url-entry">
+              Test URL: <a href="{% raw %}{{url}}{% endraw %}">Title: {% raw %} {{title}} {% endraw %}</a>
+            </div>
+          </template>
+        </amp-list>
+
+        <amp-list width="auto" height="100" layout="fixed-height" src="/json/amp-list-urls.json"
+            template="amp-template-id" class="m1">
+        </amp-list>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-6">
+
+        <amp-list height="24"
+          layout="fixed-height"
+          src="/json/products.json"
+          class="m1">
+          <template type="amp-mustache">
+            Price: ${% raw %}{{price}}{% endraw %}
+          </template>
+        </amp-list>
+        <p> An awesome product </p>
+        <amp-list height="24"
+          layout="fixed-height"
+          src="/json/products.json"
+          class="m1">
+          <template type="amp-mustache">
+          Availability: {% raw %}{{availability}}{% endraw %}
+          </template>
+        </amp-list>
+
+        <hr>
+
+        <button
+          aria-expanded="false"
+          on="tap:AMP.setState({% raw %}{ buttonToggle: { expanded: !buttonToggle.expanded } }{% endraw %})"
+          [aria-expanded]="buttonToggle.expanded ? 'true' : 'false'">Toggle</button>
+        <span class="hide" [class]="buttonToggle.expanded ? '' : 'hide'">Hello Wordl!</span>
+
+        <hr class="visible-xs">
+
+      </div>
+      <div class="col-sm-6">
+
+        <amp-list id="amp-list-placeholder" noloading width="auto"
+          height="600"
+          layout="fixed-height" src="/json/products.json">
+          <div placeholder>
+            <ul class="results">
+              <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+          </div>
+          <template type="amp-mustache">
+            <div class="products">
+            <amp-img width="150"
+              height="100"
+              alt="{% raw %}{{name}}{% endraw %}"
+              src="{% raw %}{{img}}{% endraw %}"></amp-img>
+              <p class="name">{% raw %}{{name}}{% endraw %}</p>
+              <p class="star">{% raw %}{{{stars}}}{% endraw %}</p>
+              <p class="price">${% raw %}{{price}}{% endraw %}</p>
+            </div>
+          </template>
+        </amp-list>
+
+      </div>
+    </div>
   </div>
 {% endblock %}
