@@ -11,7 +11,8 @@ var gulp = require('gulp'),
   reload = browserSync.reload,
   rename = require('gulp-rename'),
   nunjucksRender = require('gulp-nunjucks-render'),
-  gulpSequence = require('gulp-sequence');
+  gulpSequence = require('gulp-sequence'),
+  gulpAmpValidator = require('gulp-amphtml-validator');
 
 // Nunjucks tasks
 // task to render html
@@ -64,7 +65,28 @@ gulp.task('html', ['styles'], function () {
   return gulp.src('src/html/**/*.html')
     .pipe(plumber())
     .pipe(inject.after('<style amp-custom>', cssContent))
+    // Validate the input and attach the validation result to the "amp" property
+    // of the file object. 
+    .pipe(gulpAmpValidator.validate())
+    // Print the validation results to the console.
+    .pipe(gulpAmpValidator.format())
+    // Exit the process with error code (1) if an AMP validation error
+    // occurred.
+    .pipe(gulpAmpValidator.failAfterError())
     .pipe(gulp.dest('dist'));
+});
+
+// AMP validate tasks
+gulp.task('amphtml:validate', function () {
+  return gulp.src('dist/**/*.html')
+    // Validate the input and attach the validation result to the "amp" property
+    // of the file object. 
+    .pipe(gulpAmpValidator.validate())
+    // Print the validation results to the console.
+    .pipe(gulpAmpValidator.format())
+    // Exit the process with error code (1) if an AMP validation error
+    // occurred.
+    .pipe(gulpAmpValidator.failAfterError());
 });
 
 // Data folder tasks
