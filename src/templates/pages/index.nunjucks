@@ -6,6 +6,7 @@
 
 <!-- <script> -->
 {% block amp_import %}
+  <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
   <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
@@ -14,6 +15,18 @@
 <!-- <style amp-custom> -->
 <style amp-custom>
 {% block amp_custom %}
+  .carousel-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-preview button {
+    height: 40px;
+    width: 60px;
+    min-width: 60px;
+    margin: 4px;
+    padding: 0;
+  }
   .list-overflow {
     width: 160px;
     margin-left: auto;
@@ -99,6 +112,65 @@
 
     <h1>Building the future web, together.</h1>
     <p>The AMP Project is an open-source initiative aiming to make the web better for all. The project enables the creation of websites and ads that are consistently fast, beautiful and high-performing across devices and distribution platforms.</p>
+
+    <hr>
+
+    <amp-carousel id="carousel-with-preview"
+      width="400"
+      height="300"
+      layout="responsive"
+      type="slides">
+      <amp-img src="https://unsplash.it/400/300?image=10"
+        width="400"
+        height="300"
+        layout="responsive"
+        alt="a sample image"></amp-img>
+      <amp-img src="https://unsplash.it/400/300?image=11"
+        width="400"
+        height="300"
+        layout="responsive"
+        alt="a sample image"></amp-img>
+      <amp-img src="https://unsplash.it/400/300?image=12"
+        width="400"
+        height="300"
+        layout="responsive"
+        alt="a sample image"></amp-img>
+      <amp-img src="https://unsplash.it/400/300?image=13"
+        width="400"
+        height="300"
+        layout="responsive"
+        alt="a sample image"></amp-img>
+    </amp-carousel>
+    <div class="carousel-preview">
+      <button on="tap:carousel-with-preview.goToSlide(index=0)">
+        <amp-img src="https://unsplash.it/60/40?image=10"
+          width="60"
+          height="40"
+          layout="responsive"
+          alt="a sample image"></amp-img>
+      </button>
+      <button on="tap:carousel-with-preview.goToSlide(index=1)">
+        <amp-img src="https://unsplash.it/60/40?image=11"
+          width="60"
+          height="40"
+          layout="responsive"
+          alt="a sample image"></amp-img>
+      </button>
+      <button on="tap:carousel-with-preview.goToSlide(index=2)">
+        <amp-img src="https://unsplash.it/60/40?image=12"
+          width="60"
+          height="40"
+          layout="responsive"
+          alt="a sample image"></amp-img>
+      </button>
+      <button on="tap:carousel-with-preview.goToSlide(index=3)">
+        <amp-img src="https://unsplash.it/60/40?image=13"
+          width="60"
+          height="40"
+          layout="responsive"
+          alt="a sample image"></amp-img>
+      </button>
+    </div>
 
     <hr>
 
