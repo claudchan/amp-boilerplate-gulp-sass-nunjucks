@@ -76,19 +76,6 @@ gulp.task('html', ['styles'], function () {
     .pipe(gulp.dest('dist'));
 });
 
-// AMP validate tasks
-gulp.task('amphtml:validate', function () {
-  return gulp.src('dist/**/*.html')
-    // Validate the input and attach the validation result to the "amp" property
-    // of the file object. 
-    .pipe(gulpAmpValidator.validate())
-    // Print the validation results to the console.
-    .pipe(gulpAmpValidator.format())
-    // Exit the process with error code (1) if an AMP validation error
-    // occurred.
-    .pipe(gulpAmpValidator.failAfterError());
-});
-
 // Data folder tasks
 gulp.task('watch-data', function () {
   return gulp.src('src/html/json/**/*.json', { base: 'src/html/json' })
