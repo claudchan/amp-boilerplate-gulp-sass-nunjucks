@@ -1,6 +1,8 @@
 <!-- Page config -->
 {% extends "layouts/default.nunjucks" %}
 {% set pageTitle = "Front-end web development AMP boilerplate starter" %}
+{% set pageDescription = "The Accelerated Mobile Pages (AMP) Project is an open source initiative that makes it easy for publishers to create mobile-friendly content once and have it load instantly everywhere." %}
+{% set pageImage = "https://www.ampproject.org/static/img/logo-og-image.jpg" %}
 {% set canonical = "http://example.ampproject.org/article-metadata.html" %}
 {% set activeMenu = "home" %}
 
